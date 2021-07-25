@@ -2,30 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationController : MonoBehaviour
+public class PlayerAnimController : MonoBehaviour
 {
-
     private Vector3 dir;
     internal Vector3 dirDash;
     Animator anim;
     private int xValues, yValues, xDashValues, yDashValues;
 
-    
+
     [SerializeField]
     PlayerScript playerScript;
 
     #region MoveAnim Setup
-    private string[] vTitles = { "WalkDown", "" ,"WalkUp" };
-    private string[] hTitles = { "WalkLeft", "" ,"WalkRight" };
-    private string[] dUpTitles = { "UpLeft", "" ,"UpRight" };
-    private string[] dDownTitles = { "DownLeft", "" ,"DownRight" };
+    private string[] vTitles = { "WalkDown", "", "WalkUp" };
+    private string[] hTitles = { "WalkLeft", "", "WalkRight" };
+    private string[] dUpTitles = { "UpLeft", "", "UpRight" };
+    private string[] dDownTitles = { "DownLeft", "", "DownRight" };
     #endregion
 
     #region DashAnim Setup
     private string[] vDash = { "DashDown", "", "DashUp" };
     private string[] hDash = { "DashLeft", "", "DashRight" };
-    private string[] dUpDash = { "DashUpLeft", "", "DashUpRight"};
-    private string[] dDownDash = { "DashDownLeft", "", "DashDownRight"};
+    private string[] dUpDash = { "DashUpLeft", "", "DashUpRight" };
+    private string[] dDownDash = { "DashDownLeft", "", "DashDownRight" };
     #endregion
 
     private void Awake()
@@ -44,21 +43,22 @@ public class AnimationController : MonoBehaviour
         dir = playerScript.playerControl.moveDirRaw;
         xValues = (int)dir.x;
         yValues = (int)dir.y;
-        
+
         // Move Animation Condition
-        if(dir.y == 0)
+        if (dir.y == 0)
         {
             anim.Play(hTitles[1 + xValues]);
         }
-        else if(dir.x == 0)
+        else if (dir.x == 0)
         {
             anim.Play(vTitles[1 + yValues]);
-        }        
-        else if(dir.y == 1 && dir.x != 0)
+        }
+        else if (dir.y == 1 && dir.x != 0)
         {
             anim.Play(dUpTitles[1 + xValues]);
         }
-        else if(dir.y == -1 && dir.x != 0){
+        else if (dir.y == -1 && dir.x != 0)
+        {
             anim.Play(dDownTitles[1 + xValues]);
         }
     }

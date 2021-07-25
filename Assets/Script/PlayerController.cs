@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     internal Vector3 moveDirRaw;
     private Animator anim;
-    
+
     [SerializeField]
     PlayerScript playerScript;
     #endregion
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
         {
             moveX -= 1;
         }
-        
+
         moveDirRaw = new Vector3(moveX, moveY);
 
         // Dashing

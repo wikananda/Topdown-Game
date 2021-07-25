@@ -19,7 +19,7 @@ public class PlayerScript : MonoBehaviour
     float speed = 4f;
 
     [SerializeField]
-    internal AnimationController animControl;
+    internal PlayerAnimController animControl;
 
     [SerializeField]
     internal PlayerController playerControl;
@@ -39,7 +39,7 @@ public class PlayerScript : MonoBehaviour
     {
         playerControl.MovementHandler();
         moveDir = playerControl.moveDirRaw.normalized;
-        if(moveDir != new Vector3(0, 0))
+        if (moveDir != new Vector3(0, 0))
         {
             lastMove = moveDir;
         }
@@ -50,7 +50,7 @@ public class PlayerScript : MonoBehaviour
     private void FixedUpdate()
     {
         rigid.velocity = moveDir * speed;
-        Dashing(); 
+        Dashing();
     }
 
     void Dashing()
