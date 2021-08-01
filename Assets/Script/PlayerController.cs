@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     #region Setup
-    private Rigidbody2D rigid;
-    internal bool isDashDown;
-    internal float dashDuration;
+    internal float runDuration;
+    internal float rollDuration;
     internal bool canMove;
+    internal bool canRoll;
 
     internal Vector3 moveDirRaw;
     private Animator anim;
@@ -17,15 +17,12 @@ public class PlayerController : MonoBehaviour
     PlayerScript playerScript;
     #endregion
 
-    private void Awake()
-    {
-        rigid = GetComponent<Rigidbody2D>();
-        canMove = true;
-    }
 
     private void Start()
     {
-        Debug.Log("Player Script Starting");
+        Debug.Log("PlayerController Script Starting");
+        canMove = true;
+        canRoll = false;
     }
 
     internal void MovementHandler()
@@ -58,14 +55,11 @@ public class PlayerController : MonoBehaviour
 
         moveDirRaw = new Vector3(moveX, moveY);
 
-        // Dashing
-
+        // Rolling
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            dashDuration = 0f;
-            isDashDown = true;
+            rollDuration = 0f;
+            canRoll = true;
         }
-
-        // Rolling ...
     }
 }

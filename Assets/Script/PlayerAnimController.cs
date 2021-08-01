@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerAnimController : MonoBehaviour
 {
     private Vector3 dir;
-    internal Vector3 dirDash;
+    Vector3 dirRoll;
     Animator anim;
-    private int xValues, yValues, xDashValues, yDashValues;
+    private int xValues, yValues, xRollValues, yRollValues;
 
 
     [SerializeField]
@@ -20,12 +20,13 @@ public class PlayerAnimController : MonoBehaviour
     private string[] dDownTitles = { "DownLeft", "", "DownRight" };
     #endregion
 
-    #region DashAnim Setup
-    private string[] vDash = { "DashDown", "", "DashUp" };
-    private string[] hDash = { "DashLeft", "", "DashRight" };
-    private string[] dUpDash = { "DashUpLeft", "", "DashUpRight" };
-    private string[] dDownDash = { "DashDownLeft", "", "DashDownRight" };
+    #region RollAnim Setup
+    string[] vRoll = { "RollDown", "", "RollUp" };
+    string[] hRoll = { "RollLeft", "", "RollRight" };
+    string[] dUpRoll = { "RollUpLeft", "", "RollUpRight" };
+    string[] dDownRoll = { "RollDownLeft", "", "RollDownRight" };
     #endregion
+
 
     private void Awake()
     {
@@ -34,13 +35,12 @@ public class PlayerAnimController : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Animation Script Starting");
+        Debug.Log("PlayerAnimController Script Starting");
     }
 
-    internal void PlayMoveAnim()
+    internal void PlayMoveAnim(Vector3 dir)
     {
         // Move Animation Indicator
-        dir = playerScript.playerControl.moveDirRaw;
         xValues = (int)dir.x;
         yValues = (int)dir.y;
 
@@ -63,27 +63,26 @@ public class PlayerAnimController : MonoBehaviour
         }
     }
 
-    internal void PlayDashAnim()
+    internal void PlayRollAnim(Vector3 dirRoll)
     {
-        dirDash = playerScript.lastMove;
-        xDashValues = (int)dirDash.x;
-        yDashValues = (int)dirDash.y;
+        xRollValues = (int)dirRoll.x;
+        yRollValues = (int)dirRoll.y;
 
-        if (dirDash.y == 0)
+        if (dirRoll.y == 0)
         {
-            anim.Play(hDash[1 + xDashValues]);
+            anim.Play(hRoll[1 + xRollValues]);
         }
-        else if (dirDash.x == 0)
+        else if (dirRoll.x == 0)
         {
-            anim.Play(vDash[1 + yDashValues]);
+            anim.Play(vRoll[1 + yRollValues]);
         }
-        else if (dirDash.y == 1 && dirDash.x != 0)
+        else if (dirRoll.y == 1 && dirRoll.x != 0)
         {
-            anim.Play(dUpDash[1 + xDashValues]);
+            anim.Play(dUpRoll[1 + xRollValues]);
         }
-        else if (dirDash.y == -1 && dirDash.x != 0)
+        else if (dirRoll.y == -1 && dirRoll.x != 0)
         {
-            anim.Play(dDownTitles[1 + xDashValues]);
+            anim.Play(dDownRoll[1 + xRollValues]);
         }
     }
 }

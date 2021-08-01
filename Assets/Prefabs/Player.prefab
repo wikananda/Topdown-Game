@@ -143,7 +143,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 1
 --- !u!114 &4294682761204935673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd8ffe4a8166af14ca8187394fc0390f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashSpeed: 20
+  rollSpeed: 8
+  runSpeed: 6.5
   speed: 4
   animControl: {fileID: 4294682761204935675}
   playerControl: {fileID: 4294682761204935674}

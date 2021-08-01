@@ -9,11 +9,14 @@ public class PlayerScript : MonoBehaviour
     Vector3 moveDir;
     internal Vector3 lastMove;
 
-    float dashCooldown = .6f;
-    float timeLastDash = 0;
+    float rollCooldown = .1f;
+    float timeLastRoll = 0f;
 
     [SerializeField]
-    float dashSpeed = 20f;
+    float rollSpeed;
+
+    [SerializeField]
+    float runSpeed = 6.5f;
 
     [SerializeField]
     float speed = 4f;
@@ -31,51 +34,61 @@ public class PlayerScript : MonoBehaviour
     }
     void Start()
     {
-        Debug.Log("Player Script Starting");
+        Debug.Log("PlayerScript Starting");
         lastMove = new Vector3(0, -1);
     }
 
     private void Update()
     {
+        rollSpeed = 10f;
         playerControl.MovementHandler();
         moveDir = playerControl.moveDirRaw.normalized;
         if (moveDir != new Vector3(0, 0))
         {
-            lastMove = moveDir;
+            lastMove = playerControl.moveDirRaw;
         }
-        //Debug.Log(lastMove);
-        animControl.PlayMoveAnim();
+        if(playerControl.canRoll == false)
+        {
+            animControl.PlayMoveAnim(playerControl.moveDirRaw);
+        }
     }
 
     private void FixedUpdate()
     {
+        // Checking to run
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            rollSpeed = 12.5f;
+            rigid.velocity = moveDir * runSpeed;
+            Debug.Log("Running");
+            Rolling();
+            return;
+        }
+
         rigid.velocity = moveDir * speed;
-        Dashing();
+        Rolling();
     }
 
-    void Dashing()
+    void Rolling()
     {
-        if (playerControl.isDashDown == false || Time.time - timeLastDash < dashCooldown)
+        if(playerControl.canRoll == false || Time.time - timeLastRoll < rollCooldown)
         {
-            playerControl.isDashDown = false;
+            playerControl.canRoll = false;
             return;
         }
 
         playerControl.canMove = false;
-        Debug.Log(animControl.dirDash);
+        Debug.Log("Rolling with last move : " + lastMove);
 
-        if (playerControl.dashDuration <= 1f)
+        if (playerControl.rollDuration < 2f)
         {
-            rigid.velocity = lastMove * dashSpeed;
-            animControl.PlayDashAnim();
-            playerControl.dashDuration += 0.1f;
+            rigid.velocity = lastMove.normalized * rollSpeed;
+            animControl.PlayRollAnim(lastMove);
+            playerControl.rollDuration += .15f;
             return;
         }
-
-        timeLastDash = Time.time;
-        playerControl.isDashDown = false;
+        playerControl.canRoll = false;
         playerControl.canMove = true;
-
+        timeLastRoll = Time.time;
     }
-
 }
