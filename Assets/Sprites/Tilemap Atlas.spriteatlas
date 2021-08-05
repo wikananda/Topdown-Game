@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Tilemap Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: c54858942560646419f7086ee835ab12, type: 3}
+    totalSpriteSurfaceArea: 15104
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 4260230133318524069, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -6306588709759662703, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 745968338076216934, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -9106852675655700425, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -2834699621007424056, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 4971049064686688367, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -6026731920720571777, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -2386295036631077607, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -6613792370922084840, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -1988828135353101337, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 5035139237759867391, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 3235062197104327778, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 6913638643635410091, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 2592197434785513267, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 2466828561161279858, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 8970763576347242229, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 2185041290902523119, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -5599750456436461424, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -407774699277236136, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -4869357254534750094, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 4018074224661003100, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -7826287199498012479, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -6721728136321296765, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 6615319868462110837, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 5327950094024008212, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 7870480730772048316, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -1347233719151212251, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -349028749020191069, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 1468159902497108060, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 5735746141890243810, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 2065554569806331414, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 5158046814212017536, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -8316447183620893927, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 2495676471409746333, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 2526274175933715322, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 8763075827263660502, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -7783718732650132734, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 2896179404482671487, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -8831119618608956436, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 4993946416697196515, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 1228791549236833675, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -3219154307197777229, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -22031193460720863, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 7182614658172301277, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -6674061656437328523, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -3040026052974905139, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -8369517905372312421, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -7013733424125015739, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -7450669156800766785, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -6190716609726613716, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 7555821830959073814, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 4873919324978898756, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -8143584818952536569, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 3823991837180300354, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 620111541035404702, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 1839998147110866507, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: -1291705123832498677, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 4564897580977227239, guid: c54858942560646419f7086ee835ab12, type: 3}
+  - {fileID: 4289113178680934050, guid: c54858942560646419f7086ee835ab12, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Atlas_131
+  - Atlas_130
+  - Atlas_21
+  - Atlas_20
+  - Atlas_22
+  - Atlas_54
+  - Atlas_50
+  - Atlas_51
+  - Atlas_52
+  - Atlas_53
+  - Atlas_38
+  - Atlas_36
+  - Atlas_37
+  - Atlas_34
+  - Atlas_35
+  - Atlas_32
+  - Atlas_33
+  - Atlas_9
+  - Atlas_8
+  - Atlas_1
+  - Atlas_0
+  - Atlas_3
+  - Atlas_2
+  - Atlas_5
+  - Atlas_4
+  - Atlas_7
+  - Atlas_6
+  - Atlas_100
+  - Atlas_113
+  - Atlas_112
+  - Atlas_128
+  - Atlas_129
+  - Atlas_83
+  - Atlas_82
+  - Atlas_81
+  - Atlas_116
+  - Atlas_96
+  - Atlas_80
+  - Atlas_115
+  - Atlas_97
+  - Atlas_114
+  - Atlas_98
+  - Atlas_86
+  - Atlas_18
+  - Atlas_99
+  - Atlas_85
+  - Atlas_19
+  - Atlas_84
+  - Atlas_10
+  - Atlas_69
+  - Atlas_68
+  - Atlas_70
+  - Atlas_65
+  - Atlas_16
+  - Atlas_48
+  - Atlas_64
+  - Atlas_17
+  - Atlas_67
+  - Atlas_66
+  m_RenderDataMap: {}
+  m_Tag: Tilemap Atlas
+  m_IsVariant: 0

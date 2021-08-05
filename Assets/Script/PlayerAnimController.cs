@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerAnimController : MonoBehaviour
 {
-    private Vector3 dir;
-    Vector3 dirRoll;
     Animator anim;
     private int xValues, yValues, xRollValues, yRollValues;
 
@@ -38,6 +36,7 @@ public class PlayerAnimController : MonoBehaviour
         Debug.Log("PlayerAnimController Script Starting");
     }
 
+    #region Move Anim Player
     internal void PlayMoveAnim(Vector3 dir)
     {
         // Move Animation Indicator
@@ -62,9 +61,12 @@ public class PlayerAnimController : MonoBehaviour
             anim.Play(dDownTitles[1 + xValues]);
         }
     }
+    #endregion
 
+    #region Roll Anim Player
     internal void PlayRollAnim(Vector3 dirRoll)
     {
+        Debug.Log("Rolling");
         xRollValues = (int)dirRoll.x;
         yRollValues = (int)dirRoll.y;
 
@@ -85,4 +87,5 @@ public class PlayerAnimController : MonoBehaviour
             anim.Play(dDownRoll[1 + xRollValues]);
         }
     }
+    #endregion
 }

@@ -16,7 +16,7 @@ public class PlayerScript : MonoBehaviour
     float rollSpeed;
 
     [SerializeField]
-    float runSpeed = 6.5f;
+    float runSpeed = 7.5f;
 
     [SerializeField]
     float speed = 4f;
@@ -26,6 +26,8 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField]
     internal PlayerController playerControl;
+
+    [SerializeField] float rollLength = 2f;
     #endregion
 
     private void Awake()
@@ -47,10 +49,11 @@ public class PlayerScript : MonoBehaviour
         {
             lastMove = playerControl.moveDirRaw;
         }
-        if(playerControl.canRoll == false)
+        if (playerControl.canRoll == false)
         {
             animControl.PlayMoveAnim(playerControl.moveDirRaw);
         }
+        
     }
 
     private void FixedUpdate()
@@ -60,7 +63,6 @@ public class PlayerScript : MonoBehaviour
         {
             rollSpeed = 12.5f;
             rigid.velocity = moveDir * runSpeed;
-            Debug.Log("Running");
             Rolling();
             return;
         }
@@ -69,6 +71,8 @@ public class PlayerScript : MonoBehaviour
         Rolling();
     }
 
+    // BUG WHEN GAME RUNS IN LOW FPS < 10, ROLLING ANIMATION SOMETIMES WONT SHOW.
+    #region Rolling
     void Rolling()
     {
         if(playerControl.canRoll == false || Time.time - timeLastRoll < rollCooldown)
@@ -78,17 +82,17 @@ public class PlayerScript : MonoBehaviour
         }
 
         playerControl.canMove = false;
-        Debug.Log("Rolling with last move : " + lastMove);
 
-        if (playerControl.rollDuration < 2f)
+        if (playerControl.rollDuration < rollLength)
         {
             rigid.velocity = lastMove.normalized * rollSpeed;
             animControl.PlayRollAnim(lastMove);
-            playerControl.rollDuration += .15f;
+            playerControl.rollDuration += rollLength/13.3f;
             return;
         }
         playerControl.canRoll = false;
         playerControl.canMove = true;
         timeLastRoll = Time.time;
     }
+    #endregion
 }
