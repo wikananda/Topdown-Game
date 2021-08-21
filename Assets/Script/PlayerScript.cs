@@ -4,95 +4,108 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    enum State
+    {
+        Normal,
+        DodgeRoll
+    }
+
     #region Setup
-    private Rigidbody2D rigid;
-    Vector3 moveDir;
-    internal Vector3 lastMove;
+    Vector3 moveDirRaw;
+    [SerializeField] float movementSpeed = 4f;
+    [SerializeField] float dashSpeed = 7f;
+    [SerializeField] float rollSpeed = 20f;
+    [SerializeField] Rigidbody2D rigid;
 
-    float rollCooldown = .1f;
-    float timeLastRoll = 0f;
+    float moveX, moveY;
+    float speed;
+    float handleRollSpeed;
+    Vector3 lastMove;
+    State state;
 
-    [SerializeField]
-    float rollSpeed;
-
-    [SerializeField]
-    float runSpeed = 7.5f;
-
-    [SerializeField]
-    float speed = 4f;
-
-    [SerializeField]
-    internal PlayerAnimController animControl;
-
-    [SerializeField]
-    internal PlayerController playerControl;
-
-    [SerializeField] float rollLength = 2f;
+    [SerializeField] Animator animator;
     #endregion
 
-    private void Awake()
+
+    private void Start()
     {
-        rigid = GetComponent<Rigidbody2D>();
-    }
-    void Start()
-    {
-        Debug.Log("PlayerScript Starting");
+        Debug.Log("PlayerController Script Starting");
+        state = State.Normal;
         lastMove = new Vector3(0, -1);
+        speed = movementSpeed;
     }
 
     private void Update()
     {
-        rollSpeed = 10f;
-        playerControl.MovementHandler();
-        moveDir = playerControl.moveDirRaw.normalized;
-        if (moveDir != new Vector3(0, 0))
+        switch (state)
         {
-            lastMove = playerControl.moveDirRaw;
+            case State.Normal:
+                MovementHandler();
+                Dashing();
+                HandleDodgeRoll();
+                break;
+            case State.DodgeRoll:
+                DodgeRoll();
+                break;
         }
-        if (playerControl.canRoll == false)
-        {
-            animControl.PlayMoveAnim(playerControl.moveDirRaw);
-        }
-        
     }
 
-    private void FixedUpdate()
+    void MovementHandler()
     {
-        // Checking to run
+        if (state != State.Normal)
+            return;
+        moveX = Input.GetAxis("Horizontal");
+        moveY = Input.GetAxis("Vertical");
+
+        moveDirRaw = new Vector3(moveX, moveY);
+        animator.SetFloat("Horizontal", moveDirRaw.x);
+        animator.SetFloat("Vertical", moveDirRaw.y);
+        animator.SetFloat("Magnitude", moveDirRaw.magnitude);
+
+        rigid.velocity = moveDirRaw.normalized * speed;
+        Debug.Log(moveDirRaw);
+        if (moveDirRaw != Vector3.zero)
+        {
+            lastMove = moveDirRaw;
+        }
+    }
+
+    void Dashing()
+    {
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            rollSpeed = 12.5f;
-            rigid.velocity = moveDir * runSpeed;
-            Rolling();
+            animator.speed = 1.2f;
+            speed = dashSpeed;
             return;
         }
-
-        rigid.velocity = moveDir * speed;
-        Rolling();
+        speed = movementSpeed;
+        animator.speed = 1f;
     }
 
-    // BUG WHEN GAME RUNS IN LOW FPS < 10, ROLLING ANIMATION SOMETIMES WONT SHOW.
-    #region Rolling
-    void Rolling()
+    void HandleDodgeRoll()
     {
-        if(playerControl.canRoll == false || Time.time - timeLastRoll < rollCooldown)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerControl.canRoll = false;
-            return;
+            state = State.DodgeRoll;
+            handleRollSpeed = rollSpeed;
+            animator.SetBool("Rolling", true);
         }
-
-        playerControl.canMove = false;
-
-        if (playerControl.rollDuration < rollLength)
-        {
-            rigid.velocity = lastMove.normalized * rollSpeed;
-            animControl.PlayRollAnim(lastMove);
-            playerControl.rollDuration += rollLength/13.3f;
-            return;
-        }
-        playerControl.canRoll = false;
-        playerControl.canMove = true;
-        timeLastRoll = Time.time;
     }
-    #endregion
+
+    void DodgeRoll()
+    {
+        animator.SetFloat("RollX", lastMove.x);
+        animator.SetFloat("RollY", lastMove.y);
+        animator.SetFloat("Magnitude", 0);
+        animator.speed = 1f;
+        
+        rigid.velocity = lastMove.normalized * handleRollSpeed;
+        handleRollSpeed -= handleRollSpeed * 0.05f;
+        
+        if(handleRollSpeed < 5f)
+        {
+            state = State.Normal;
+            animator.SetBool("Rolling", false);
+        }
+    }
 }
