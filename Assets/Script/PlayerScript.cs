@@ -20,6 +20,7 @@ public class PlayerScript : MonoBehaviour
     float moveX, moveY;
     float speed;
     float handleRollSpeed;
+
     Vector3 lastMove;
     State state;
 
@@ -61,9 +62,10 @@ public class PlayerScript : MonoBehaviour
         animator.SetFloat("Horizontal", moveDirRaw.x);
         animator.SetFloat("Vertical", moveDirRaw.y);
         animator.SetFloat("Magnitude", moveDirRaw.magnitude);
+        animator.SetFloat("lastMoveX", lastMove.x);
+        animator.SetFloat("lastMoveY", lastMove.y);
 
         rigid.velocity = moveDirRaw.normalized * speed;
-        Debug.Log(moveDirRaw);
         if (moveDirRaw != Vector3.zero)
         {
             lastMove = moveDirRaw;
@@ -94,18 +96,19 @@ public class PlayerScript : MonoBehaviour
 
     void DodgeRoll()
     {
-        animator.SetFloat("RollX", lastMove.x);
-        animator.SetFloat("RollY", lastMove.y);
         animator.SetFloat("Magnitude", 0);
         animator.speed = 1f;
         
         rigid.velocity = lastMove.normalized * handleRollSpeed;
-        handleRollSpeed -= handleRollSpeed * 0.05f;
-        
-        if(handleRollSpeed < 5f)
+        handleRollSpeed -= handleRollSpeed * 0.025f;
+        Debug.Log("Rolling");
+
+        if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .9f)
         {
+            Debug.Log("Finished");
             state = State.Normal;
             animator.SetBool("Rolling", false);
         }
+        
     }
 }

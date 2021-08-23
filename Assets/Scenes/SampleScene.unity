@@ -3479,6 +3479,10 @@ PrefabInstance:
       value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4294682761204935673, guid: 6ae81593fd35f46458dc3f171a9a510a, type: 3}
+      propertyPath: targetFPS
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4294682761204935673, guid: 6ae81593fd35f46458dc3f171a9a510a, type: 3}
       propertyPath: attackPoint
       value: 
       objectReference: {fileID: 747918365}
@@ -3490,5 +3494,7 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 249458661}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4294682761204935675, guid: 6ae81593fd35f46458dc3f171a9a510a, type: 3}
+    - {fileID: 4294682761204935674, guid: 6ae81593fd35f46458dc3f171a9a510a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6ae81593fd35f46458dc3f171a9a510a, type: 3}
