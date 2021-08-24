@@ -7,7 +7,8 @@ public class PlayerScript : MonoBehaviour
     enum State
     {
         Normal,
-        DodgeRoll
+        DodgeRoll,
+        SlashAttack
     }
 
     #region Setup
@@ -17,11 +18,12 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] float rollSpeed = 20f;
     [SerializeField] Rigidbody2D rigid;
 
-    float moveX, moveY;
+    float moveX, moveY, rollX, rollY;
     float speed;
     float handleRollSpeed;
 
     Vector3 lastMove;
+    Vector3 moveRollRaw;
     State state;
 
     [SerializeField] Animator animator;
@@ -44,10 +46,35 @@ public class PlayerScript : MonoBehaviour
                 MovementHandler();
                 Dashing();
                 HandleDodgeRoll();
+                HandleSlashAttack();
                 break;
             case State.DodgeRoll:
                 DodgeRoll();
                 break;
+            case State.SlashAttack:
+                SlashAttack();
+                HandleDodgeRoll();
+                break;
+        }
+    }
+
+    void HandleSlashAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            state = State.SlashAttack;
+            animator.SetBool("Slash", true);
+            animator.SetFloat("Magnitude", 0f);
+        }
+    }
+
+    void SlashAttack()
+    {
+        rigid.velocity = Vector2.zero;
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .9f)
+        {
+            state = State.Normal;
+            animator.SetBool("Slash", false);
         }
     }
 
@@ -90,22 +117,35 @@ public class PlayerScript : MonoBehaviour
         {
             state = State.DodgeRoll;
             handleRollSpeed = rollSpeed;
+            rollX = Input.GetAxis("Horizontal");
+            rollY = Input.GetAxis("Vertical");
             animator.SetBool("Rolling", true);
+            animator.SetBool("Slash", false);
+            animator.SetFloat("Magnitude", 0);
+            animator.speed = 1f;
+            moveRollRaw = new Vector3(rollX, rollY);
         }
     }
 
     void DodgeRoll()
     {
-        animator.SetFloat("Magnitude", 0);
-        animator.speed = 1f;
+        if(moveRollRaw == Vector3.zero)
+        {
+            rigid.velocity = lastMove.normalized * handleRollSpeed;
+            animator.SetFloat("moveRollX", lastMove.x);
+            animator.SetFloat("moveRollY", lastMove.y);
+        }
+        else
+        {
+            rigid.velocity = moveRollRaw.normalized * handleRollSpeed;
+            animator.SetFloat("moveRollX", rollX);
+            animator.SetFloat("moveRollY", rollY);
+        }
         
-        rigid.velocity = lastMove.normalized * handleRollSpeed;
         handleRollSpeed -= handleRollSpeed * 0.025f;
-        Debug.Log("Rolling");
 
         if(animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .9f)
         {
-            Debug.Log("Finished");
             state = State.Normal;
             animator.SetBool("Rolling", false);
         }
