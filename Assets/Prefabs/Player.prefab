@@ -10,12 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1044417073377982042}
   - component: {fileID: 2823671734675157178}
+  - component: {fileID: 4676901108676363978}
   - component: {fileID: 3130934887424639880}
   - component: {fileID: 7728813076578364370}
-  - component: {fileID: 1441708588571346089}
   - component: {fileID: 4294682761204935673}
-  - component: {fileID: 4294682761204935674}
-  - component: {fileID: 4294682761204935675}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -88,6 +86,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4676901108676363978
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4294682761204935620}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 08d8a12a6fe0c5b48b504f6d3c4223e2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!70 &3130934887424639880
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -125,25 +142,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!95 &1441708588571346089
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4294682761204935620}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 08d8a12a6fe0c5b48b504f6d3c4223e2, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 1
 --- !u!114 &4294682761204935673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,34 +154,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd8ffe4a8166af14ca8187394fc0390f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slash: {fileID: 0}
+  movementSpeed: 4
+  dashSpeed: 7
   rollSpeed: 8
-  runSpeed: 6.5
-  speed: 4
-  animControl: {fileID: 4294682761204935675}
-  playerControl: {fileID: 4294682761204935674}
---- !u!114 &4294682761204935674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4294682761204935620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7558f6071b445ff429e6734c9e7f46f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerScript: {fileID: 4294682761204935673}
---- !u!114 &4294682761204935675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4294682761204935620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55b83924f11db1041bc45a9351e4ed5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerScript: {fileID: 4294682761204935673}
+  rigid: {fileID: 0}
+  animator: {fileID: 0}
+  slashEffect: {fileID: 0}

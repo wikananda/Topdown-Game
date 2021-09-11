@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    #region Setup
     enum State
     {
         Normal,
@@ -11,7 +12,6 @@ public class PlayerScript : MonoBehaviour
         SlashAttack
     }
 
-    #region Setup
     Vector3 moveDirRaw;
     [SerializeField] float movementSpeed = 4f;
     [SerializeField] float dashSpeed = 7f;
@@ -73,8 +73,8 @@ public class PlayerScript : MonoBehaviour
         rigid.velocity = Vector2.zero;
         if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > .9f)
         {
-            state = State.Normal;
             animator.SetBool("Slash", false);
+            state = State.Normal;
         }
     }
 
